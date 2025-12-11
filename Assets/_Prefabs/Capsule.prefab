@@ -149,6 +149,8 @@ GameObject:
   - component: {fileID: 8584218715250428597}
   - component: {fileID: 7570280253086036006}
   - component: {fileID: 769870863512966202}
+  - component: {fileID: 5238382034233303012}
+  - component: {fileID: 3536161692543275622}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -251,3 +253,49 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!143 &5238382034233303012
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6696990205954437337}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3536161692543275622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6696990205954437337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1773b940dab059e4fa48d2444e8b8b89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FirstPersonController
+  moveSpeed: 5
+  crouchSpeedMultiplier: 0.5
+  cameraRoot: {fileID: 0}
+  mouseSensitivity: 25
+  maxLookUp: 80
+  maxLookDown: -80
+  jumpHeight: 1.5
+  gravity: -9.81
+  crouchHeight: 1

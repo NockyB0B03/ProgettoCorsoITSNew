@@ -4,10 +4,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
 {
     [Header("Movimento")]
     public float speed = 5f;
-    public float sprintMultiplier = 1.5f;
+    public float sprintMultiplier = 10f;
 
     [Header("Camera")]
-    public Transform comeraTransform;
+    public Transform cameraTransform;
     public float lookSensitivity = 3f;
 
     private bool isSprinting;
@@ -22,9 +22,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Sprint()
-        Move()
-        Look()
+        Sprint();
+        Move();
+        Look();
     }
 
     void Move()
@@ -36,10 +36,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         if (inputDir.sqrMagnitude > 1f)
         {
-            inputDir.Normalize()
+            inputDir.Normalize();
         }
 
-        float currentSpedd = of;
+        float currentSpedd = 0f;
 
         if(isSprinting)
         {
@@ -51,19 +51,27 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
 
         Vector3 move = transform.TransformDirection(inputDir) * Time.deltaTime;
-        trasform.position += move;
+        transform.position += move;
     }
 
     void Sprint()
     {
-        isSprinting = Input.GetKey(KeyCode.LeftShoft);
+        isSprinting = Input.GetKey(KeyCode.LeftShift);
     }
 
-    void look()
+    void Look()
     {
         float mouseX = Input.GetAxis("Mouse X") * lookSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * lookSensitivity;
 
-        transform.Rotate(Vector3.up = mosueX);
+        transform.Rotate(Vector3.up * mouseX);
+        // Rotazione verticale della camera
+        xRotation -= mouseY;
+        xRotation = Mathf.Clamp(xRotation, -80f, 80f);
+
+        if (cameraTransform != null)
+        {
+            cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        }
     }
 }

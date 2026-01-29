@@ -1,17 +1,19 @@
 using System.Collections;
+using System.ComponentModel;
+using Unity.Collections;
 using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
+    [SerializeField] protected Transform muzzle;
+    protected int bulletsLeft;
+
+    //Dati armi, da spostare in scriptable object
     [SerializeField] protected float range;
     [SerializeField] protected int bulletDamage;
-    [SerializeField] protected Transform muzzle;
-
     [SerializeField] protected int clipSize;
-    [SerializeField] protected int bulletsLeft;
     [SerializeField] protected float fireRate;
     [SerializeField] protected float reloadTime;
-
 
     protected bool readyToShoot;
     protected bool reloading;
@@ -23,10 +25,12 @@ public class Shooter : MonoBehaviour
         bulletsLeft = clipSize;
         readyToShoot = true;
     }
+
     protected virtual void TryShoot()
     {
         if (readyToShoot == false) return;
         Shoot();
+
         readyToShoot = false;
         float secondsBetweenShots = 1f / Mathf.Max(fireRate, 0.0001f);
         StartCoroutine(FireRateCd(secondsBetweenShots));
@@ -40,8 +44,12 @@ public class Shooter : MonoBehaviour
     protected virtual void Reload()
     {
         if (reloadingCrt != null) return;
+
+        Debug.Log($"{gameObject.name} Reloading");
+
         reloading = true;
         reloadingCrt = StartCoroutine(ReloadWait(reloadTime));
+
     }
 
     protected IEnumerator ReloadWait(float _reloadTime)
@@ -54,7 +62,8 @@ public class Shooter : MonoBehaviour
 
     protected IEnumerator FireRateCd(float _fireRate)
     {
-        yield return new WaitForSeconds(_fireRate); 
+        yield return new WaitForSeconds(_fireRate);
         readyToShoot = true;
     }
+
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8bb469706e82a642aae350a542198bc, type: 3}
   m_Name: Grunt
   m_EditorClassIdentifier: Assembly-CSharp::EntityDataSO
-  baseEntity: {fileID: -6176371126298056092, guid: 57cf2c9f2ce2c55459e83c8db674d6c2, type: 3}
+  baseEntity: {fileID: -7177602209286000092, guid: 57cf2c9f2ce2c55459e83c8db674d6c2, type: 3}
   maxEntityHealth: 100
   startingEntityHealth: 100
   entityColor: {r: 1, g: 0, b: 0.7658124, a: 1}

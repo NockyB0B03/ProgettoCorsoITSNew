@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,7 @@ public class PlayerShooter : Shooter
     [SerializeField] Image reloadCircle;
     private PlayerInputActions inputActions;
     private bool isHoldingFire;
+
 
     protected override void Awake()
     {
@@ -107,6 +109,8 @@ public class PlayerShooter : Shooter
         reloading = false;
         reloadingCrt = null;
     }
+
+    
     private void OnEnable() => inputActions?.Enable();
     private void OnDisable() => inputActions?.Disable();
     private void OnDestroy() => inputActions?.Dispose();

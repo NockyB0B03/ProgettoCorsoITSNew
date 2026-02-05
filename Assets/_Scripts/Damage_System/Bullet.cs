@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -51,14 +52,14 @@ public class Bullet : MonoBehaviour
             // Infligge danno al nemico/giocatore
             Debug.Log($"{collision.gameObject.name} è stato colpito dal proiettile!");
             healthHit.TakeDamage(damage);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
             return;
         }
 
         // Se colpisce qualcos'altro (muri, alleati, ecc) il proiettile viene distrutto
         if (collision.CompareTag("Wall") || collision.gameObject.layer == LayerMask.NameToLayer("Environment"))
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 
@@ -72,12 +73,12 @@ public class Bullet : MonoBehaviour
         {
             Debug.Log($"{collision.gameObject.name} è stato colpito dal proiettile!");
             healthHit.TakeDamage(damage);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
             return;
         }
 
         // Distrugge il proiettile se colpisce qualcos'altro
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -85,6 +86,12 @@ public class Bullet : MonoBehaviour
     /// </summary>
     public void SetDestroyTimer(float timeInSeconds)
     {
-        Destroy(gameObject, timeInSeconds);
+        StartCoroutine(DeactivateBullet(timeInSeconds));
+    }
+
+    IEnumerator DeactivateBullet(float time)
+    {
+        yield return new WaitForSeconds(time);
+        gameObject.SetActive(false);
     }
 }
